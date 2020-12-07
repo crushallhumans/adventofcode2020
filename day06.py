@@ -134,9 +134,9 @@ For each group, count the number of questions to which everyone answered "yes". 
 """)
 
 class testCase(unittest.TestCase):
-	def test_basic_action(self):
-		self.assertEqual(basic_action(
-"""abc
+
+	def setUp(self):
+		self.teststring = """abc
 
 a
 b
@@ -151,28 +151,17 @@ a
 a
 
 b"""
-			),
+
+
+	def test_basic_action(self):
+		self.assertEqual(
+			basic_action(self.teststring),
 			([3,3,3,1,1],11)
 		)
 
 	def test_additional_action(self):
-		self.assertEqual(additional_action(
-"""abc
-
-a
-b
-c
-
-ab
-ac
-
-a
-a
-a
-a
-
-b"""
-			),
+		self.assertEqual(
+			additional_action(self.teststring),
 			([3,0,1,1,1],6)
 		)
 
