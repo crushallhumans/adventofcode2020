@@ -50,9 +50,12 @@ def test_attachments(jolts):
     def _attach(starting_at):
         if starting_at == top:
             return 1
-        return sum(
-        	_attach(starting_at + n) for n in range(1, 4) if starting_at + n in jolts
-        )
+        internal_recursion_results = []
+        for i in range(1,4):
+        	starting_at_internal = starting_at + i
+        	if starting_at_internal in jolts:
+        		internal_recursion_results.append(_attach(starting_at_internal))
+        return sum(internal_recursion_results)
 
     return _attach(0)
 
